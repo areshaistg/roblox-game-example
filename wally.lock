@@ -25,7 +25,7 @@ dependencies = []
 [[package]]
 name = "gaby3/matter-ecs-tutorial"
 version = "0.1.0"
-dependencies = [["matter", "evaera/matter@0.6.2"], ["plasma", "evaera/plasma@0.4.2"], ["rewire", "sayhisam1/rewire@0.3.0"], ["roact", "roblox/roact@1.4.4"], ["roact-hooks", "kampfkarren/roact-hooks@0.5.0"], ["roact-spring", "chriscerie/roact-spring@1.1.2"]]
+dependencies = [["matter", "evaera/matter@0.6.2"], ["plasma", "evaera/plasma@0.4.2"], ["rewire", "sayhisam1/rewire@0.3.0"], ["roact", "roblox/roact@1.4.4"], ["roact-hooks", "kampfkarren/roact-hooks@0.5.0"], ["roact-rodux", "roblox/roact-rodux@0.5.1"], ["roact-spring", "chriscerie/roact-spring@1.1.2"], ["rodux", "roblox/rodux@3.0.0"]]
 
 [[package]]
 name = "kampfkarren/roact-hooks"
@@ -35,6 +35,21 @@ dependencies = []
 [[package]]
 name = "roblox/roact"
 version = "1.4.4"
+dependencies = []
+
+[[package]]
+name = "roblox/roact-rodux"
+version = "0.5.1"
+dependencies = [["Roact", "roblox/roact@1.4.4"], ["Rodux", "roblox/rodux@4.0.0-rc.0"]]
+
+[[package]]
+name = "roblox/rodux"
+version = "3.0.0"
+dependencies = []
+
+[[package]]
+name = "roblox/rodux"
+version = "4.0.0-rc.0"
 dependencies = []
 
 [[package]]
