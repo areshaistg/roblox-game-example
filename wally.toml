@@ -1,0 +1,13 @@
+[package]
+name = "gaby3/matter-ecs-tutorial"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+matter = "evaera/matter@0.6.2"
+plasma = "evaera/plasma@0.4.2"
+rewire = "sayhisam1/rewire@0.3.0"
+roact = "roblox/roact@1.4.4"
+roact-hooks = "kampfkarren/roact-hooks@0.5.0"
+roact-spring = "chriscerie/roact-spring@1.1.2"
