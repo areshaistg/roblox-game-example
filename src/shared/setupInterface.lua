@@ -4,14 +4,19 @@ local Player = game:GetService("Players").LocalPlayer
 
 --|| Packages ||--
 local Roact = require(ReplicatedStorage.Packages.roact)
-local RoactHooks = require(ReplicatedStorage.Packages["roact-hooks"])
+local Rodux = require(ReplicatedStorage.Packages.rodux)
+local RoactRodux = require(ReplicatedStorage.Packages["roact-rodux"])
 
 --|| Setup Interface ||--
 local UI = ReplicatedStorage.Common.ui
 local App = require(UI.App)
 
-local function setupInterface(world, state)
-    local app = Roact.createElement(App)
+local function setupInterface(world, store)
+    local app = Roact.createElement(RoactRodux.StoreProvider, {
+        store = store
+    }, {
+        App = Roact.createElement(App)
+    })
     Roact.mount(app, Player:WaitForChild("PlayerGui"))
 end
 

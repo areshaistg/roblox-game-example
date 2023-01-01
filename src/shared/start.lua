@@ -7,13 +7,30 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.matter)
 local Plasma = require(Packages.plasma)
+local Rodux = require(Packages.rodux)
 local HotReloader = require(Packages.rewire).HotReloader
 
 local components = require(script.Parent.components)
 
-local function start(containers)
+local function start(containers, reducers)
     local world = Matter.World.new()
-    local state = {}
+
+    local actDebugToggled = Rodux.makeActionCreator("DebugToggled", function(enabled)
+        return {
+            enabled = enabled
+        }
+    end)
+
+    local debugReducer = Rodux.createReducer({enabled = false}, {
+        [actDebugToggled.name] = function(state, action)
+            return { enabled = action.enabled }
+        end
+    })
+
+    reducers = reducers or {}
+    reducers["debug"] = debugReducer
+    local reducer = Rodux.combineReducers(reducers)
+    local store = Rodux.Store.new(reducer, nil)
 
     local debugger = Matter.Debugger.new(Plasma)
 
@@ -27,7 +44,7 @@ local function start(containers)
         return health or nil
     end
 
-    local loop = Matter.Loop.new(world, state, debugger:getWidgets())
+    local loop = Matter.Loop.new(world, store, debugger:getWidgets())
 
     -- Setup hot reloading
     local hotReloader = HotReloader.new()
@@ -91,12 +108,13 @@ local function start(containers)
             if input.KeyCode == Enum.KeyCode.F4 then
                 debugger:toggle()
 
-                state.debugEnabled = debugger.enabled
+                
+                store:dispatch(actDebugToggled(debugger.enabled))
             end
         end)
     end
 
-    return world, state
+    return world, store
 end
 
 return start
